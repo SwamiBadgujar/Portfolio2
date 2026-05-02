@@ -1,0 +1,11 @@
+.App {
+  min-height: 100vh;
+  background: #07070b;
+  position: relative;
+}
+
+/* Smooth anchor scroll offset for sticky header */
+section { scroll-margin-top: 80px; }
+
+/* Selection */
+::selection { background: rgba(20, 224, 198, 0.35); color: #fff; }
