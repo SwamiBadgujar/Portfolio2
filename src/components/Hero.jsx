@@ -117,7 +117,7 @@ export default function Hero() {
             </button>
 
             <a
-              href={profile.resumeUrl}
+              href="/resume/Swami_Badgujar.pdf"
               target="_blank"
               rel="noopener noreferrer"
               download="Swami_Badgujar_Resume.pdf"
