@@ -95,24 +95,24 @@ export default function Contact() {
           </div>
           <div className="flex flex-wrap items-center gap-3">
             <a
-              href={profile.resumeUrl}
+              href="/resume/Swami_Badgujar.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              download="Swami_Badgujar_Resume.pdf"
+              download="Swami_Badgujar.pdf"
               className="inline-flex items-center gap-2 rounded-md text-sm shadow py-2 bg-amber-300 hover:bg-amber-200 text-[#07070b] font-semibold h-11 px-5 transition-colors"
             >
               <Download className="mr-2 h-4 w-4" aria-hidden />
               Download CV
             </a>
             <a
-              href={profile.github}
+              href="https://github.com/SwamiBadgujar"
               className="h-11 w-11 grid place-items-center rounded-xl border border-white/10 bg-[#0a0a0f] text-white/85 hover:text-teal-300 hover:border-teal-300/40 transition-colors"
               aria-label="github"
             >
               <Github className="h-4 w-4" aria-hidden />
             </a>
             <a
-              href={profile.linkedin}
+              href="https://www.linkedin.com/in/swami-badgujar-a66845293"
               className="h-11 w-11 grid place-items-center rounded-xl border border-white/10 bg-[#0a0a0f] text-white/85 hover:text-teal-300 hover:border-teal-300/40 transition-colors"
               aria-label="linkedin"
             >

@@ -53,14 +53,14 @@ export default function Footer() {
             <div className="mono text-xs uppercase tracking-wider text-white/40 mb-3">Connect</div>
             <div className="flex items-center gap-3 mb-4">
               <a
-                href={profile.github}
+                href="https://github.com/SwamiBadgujar"
                 className="h-9 w-9 grid place-items-center rounded-lg border border-white/10 hover:border-teal-300/40 hover:text-teal-300 text-white/80 transition-colors"
                 aria-label="github"
               >
                 <Github className="h-4 w-4" aria-hidden />
               </a>
               <a
-                href={profile.linkedin}
+                href="https://www.linkedin.com/in/swami-badgujar-a66845293"
                 className="h-9 w-9 grid place-items-center rounded-lg border border-white/10 hover:border-teal-300/40 hover:text-teal-300 text-white/80 transition-colors"
                 aria-label="linkedin"
               >
@@ -81,10 +81,10 @@ export default function Footer() {
               {profile.email}
             </a>
             <a
-              href={profile.resumeUrl}
+              href="/resume/Swami_Badgujar.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              download="Swami_Badgujar_Resume.pdf"
+              download="Swami_Badgujar.pdf"
               className="mt-4 inline-flex items-center gap-2 h-9 px-4 rounded-md border border-amber-300/40 text-amber-200 hover:bg-amber-300/10 text-sm transition-colors"
             >
               <Download className="h-4 w-4" aria-hidden />

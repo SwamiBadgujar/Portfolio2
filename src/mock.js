@@ -16,10 +16,12 @@ export const profile = {
   linkedin: "#",
   resumeUrl: "#",
   stats: [
-    { icon: "Cloud", value: "4+", label: "Years Coding" },
-    { icon: "CodeXml", value: "5+", label: "Projects Shipped" },
-    { icon: "Zap", value: "DevOps / SDE", label: "Open to Roles" },
-  ],
+  { icon: "Cloud", value: "4+", label: "Years Coding" },
+  { icon: "CodeXml", value: "5+", label: "Projects Shipped" },
+  { icon: "Zap", value: "DevOps / SDE", label: "Open to Roles" },
+  { icon: "BadgeCheck", value: "Java", label: "Full Stack Certified", accent: "amber" },
+  { icon: "BadgeCheck", value: "SAP BTP", label: "Certified", accent: "amber" },
+],
 };
 
 // ── Skills ────────────────────────────────────────────────────────────────────
@@ -95,7 +97,7 @@ export const projects = [
   {
     title: "Mangalam Billing App",
     subtitle: "Patient Billing & Android Deployment",
-    year: "2024",
+    year: "2026",
     summary:
       "A billing application for a medical clinic that lets doctors generate patient bills in seconds — packaged and shipped as an Android app.",
     description:
@@ -114,7 +116,7 @@ export const projects = [
   {
     title: "DPhysio",
     subtitle: "Physiotherapy Clinic Management System",
-    year: "2024",
+    year: "2025",
     summary:
       "A full-stack MERN clinic platform with online appointment booking, automated email confirmations, an AI chatbot and JWT-secured doctor login.",
     description:
@@ -213,10 +215,11 @@ export const education = [
 
 // ── Nav links ─────────────────────────────────────────────────────────────────
 export const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home",           href: "#home" },
+  { label: "About",          href: "#about" },
+  { label: "Skills",         href: "#skills" },
+  { label: "Experience",     href: "#experience" },
+  { label: "Projects",       href: "#projects" },
+  { label: "Certifications", href: "#certifications" },
+  { label: "Contact",        href: "#contact" },
 ];

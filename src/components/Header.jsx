@@ -20,6 +20,18 @@ export default function Header() {
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
+  // navLinks from mock, but we inject Certifications if not already present
+  const allLinks = navLinks.some((n) => n.label === "Certifications")
+    ? navLinks
+    : [
+        ...navLinks.slice(0, navLinks.findIndex((n) => n.label === "Contact")),
+        { label: "Certifications", href: "#certifications" },
+        ...navLinks.slice(navLinks.findIndex((n) => n.label === "Contact")),
+      ];
+
+  // Links that get a number prefix (everything except Home)
+  let numberedIndex = 0;
+
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
@@ -44,25 +56,33 @@ export default function Header() {
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-1">
-          {navLinks.map((n, i) => (
-            <button
-              key={n.label}
-              onClick={() => scrollTo(n.href, n.label)}
-              className={`relative px-3 py-2 text-sm transition-colors ${
-                active === n.label
-                  ? "text-teal-300"
-                  : "text-white/60 hover:text-white/90"
-              }`}
-            >
-              <span className="mono mr-1 text-[10px] opacity-60">
-                0{i + 1}.
-              </span>
-              {n.label}
-              {active === n.label && (
-                <span className="absolute left-3 right-3 -bottom-0.5 h-px bg-teal-300/70" />
-              )}
-            </button>
-          ))}
+          {allLinks.map((n) => {
+            const isHome = n.label === "Home";
+            if (!isHome) numberedIndex += 1;
+            const num = numberedIndex;
+
+            return (
+              <button
+                key={n.label}
+                onClick={() => scrollTo(n.href, n.label)}
+                className={`relative px-3 py-2 text-sm transition-colors ${
+                  active === n.label
+                    ? "text-teal-300"
+                    : "text-white/60 hover:text-white/90"
+                }`}
+              >
+                {!isHome && (
+                  <span className="mono mr-1 text-[10px] opacity-60">
+                    0{num}.
+                  </span>
+                )}
+                {n.label}
+                {active === n.label && (
+                  <span className="absolute left-3 right-3 -bottom-0.5 h-px bg-teal-300/70" />
+                )}
+              </button>
+            );
+          })}
         </nav>
 
         {/* CTA */}
@@ -88,16 +108,28 @@ export default function Header() {
       {/* Mobile menu */}
       {mobileOpen && (
         <div className="md:hidden bg-[#07070b]/95 backdrop-blur-xl border-b border-white/10 px-6 pb-6">
-          {navLinks.map((n, i) => (
-            <button
-              key={n.label}
-              onClick={() => scrollTo(n.href, n.label)}
-              className="block w-full text-left py-3 text-sm text-white/70 hover:text-white border-b border-white/5 last:border-0"
-            >
-              <span className="mono text-[10px] text-teal-300/60 mr-2">0{i + 1}.</span>
-              {n.label}
-            </button>
-          ))}
+          {(() => {
+            let mobileNum = 0;
+            return allLinks.map((n) => {
+              const isHome = n.label === "Home";
+              if (!isHome) mobileNum += 1;
+              const num = mobileNum;
+              return (
+                <button
+                  key={n.label}
+                  onClick={() => scrollTo(n.href, n.label)}
+                  className="block w-full text-left py-3 text-sm text-white/70 hover:text-white border-b border-white/5 last:border-0"
+                >
+                  {!isHome && (
+                    <span className="mono text-[10px] text-teal-300/60 mr-2">
+                      0{num}.
+                    </span>
+                  )}
+                  {n.label}
+                </button>
+              );
+            });
+          })()}
           <a
             href={`mailto:${profile.email}?subject=Opportunity%20for%20you%2C%20Swami`}
             className="mt-4 inline-flex items-center justify-center gap-2 rounded-md text-sm h-10 px-4 w-full bg-teal-400 hover:bg-teal-300 text-[#07070b] font-medium"

@@ -91,6 +91,18 @@ export default function Hero() {
             available_for_opportunities = true
           </div>
 
+          {/* Role label — NEW */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-amber-300/30 bg-amber-300/5 mono text-xs text-amber-200/90 mb-4 ml-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-amber-300" />
+            Full Stack Web Developer
+          </div>
+
+          {/* Role label — NEW */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-amber-300/30 bg-amber-300/5 mono text-xs text-amber-200/90 mb-4 ml-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-amber-300" />
+            Aspiring DevOps Engineer
+          </div>
+
           <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-semibold text-white leading-[1.02] tracking-tight">
             Hi, I'm{" "}
             <span className="relative inline-block">
@@ -103,7 +115,12 @@ export default function Hero() {
             <span className="text-amber-300">deploy</span> them.
           </h1>
 
-          <p className="mt-6 text-white/65 text-lg max-w-2xl leading-relaxed">
+          {/* Role subtitle — NEW */}
+          <p className="mt-3 mono text-sm text-teal-300/70 tracking-wide">
+            Full Stack Web Developer &nbsp;·&nbsp; MERN &nbsp;·&nbsp; DevOps
+          </p>
+
+          <p className="mt-4 text-white/65 text-lg max-w-2xl leading-relaxed">
             {profile.tagline}
           </p>
 
@@ -145,11 +162,11 @@ export default function Hero() {
               <Mail className="h-4 w-4 text-teal-300" aria-hidden />
               {profile.email}
             </a>
-            <a href={profile.github} className="inline-flex items-center gap-2 hover:text-white">
+            <a href="https://github.com/SwamiBadgujar" className="inline-flex items-center gap-2 hover:text-white">
               <Github className="h-4 w-4 text-teal-300" aria-hidden />
               github
             </a>
-            <a href={profile.linkedin} className="inline-flex items-center gap-2 hover:text-white">
+            <a href="https://www.linkedin.com/in/swami-badgujar-a66845293" className="inline-flex items-center gap-2 hover:text-white">
               <Linkedin className="h-4 w-4 text-teal-300" aria-hidden />
               linkedin
             </a>
@@ -177,7 +194,8 @@ export default function Hero() {
               </span>
               <div className="text-xs leading-tight">
                 <div className="text-white/90 font-medium">{profile.name}</div>
-                <div className="text-white/50 mono">{profile.role}</div>
+                {/* Role shown in floating badge — UPDATED */}
+                <div className="text-white/50 mono">Full Stack Web Developer</div>
               </div>
             </div>
 

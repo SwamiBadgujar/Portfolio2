@@ -1,8 +1,8 @@
 import React from "react";
-import { Cloud, CodeXml, Cpu, Zap } from "lucide-react";
+import { Cloud, CodeXml, Cpu, Zap, BadgeCheck } from "lucide-react";
 import { profile } from "../mock";
 
-const iconMap = { Cloud, CodeXml, Cpu, Zap };
+const iconMap = { Cloud, CodeXml, Cpu, Zap, BadgeCheck };
 
 export default function About() {
   return (
@@ -25,17 +25,42 @@ export default function About() {
           <div className="lg:col-span-7">
             <p className="text-white/70 text-lg leading-relaxed">{profile.about}</p>
 
-            <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
               {profile.stats.map((s) => {
                 const Icon = iconMap[s.icon] || Cloud;
+                const isCert = s.accent === "amber";
                 return (
                   <div
                     key={s.label}
-                    className="group relative rounded-xl border border-white/10 bg-[#0e0e14] p-5 overflow-hidden hover:border-teal-300/40 transition-colors"
+                    className={`group relative rounded-xl border bg-[#0e0e14] p-5 overflow-hidden transition-colors ${
+                      isCert
+                        ? "border-amber-300/20 hover:border-amber-300/50"
+                        : "border-white/10 hover:border-teal-300/40"
+                    }`}
                   >
-                    <div className="absolute -right-6 -top-6 h-20 w-20 rounded-full bg-teal-400/10 blur-2xl group-hover:bg-teal-400/20 transition" />
-                    <Icon className="h-5 w-5 text-teal-300 mb-3" aria-hidden />
-                    <div className="font-display text-2xl text-white font-semibold">{s.value}</div>
+                    {/* glow orb */}
+                    <div
+                      className={`absolute -right-6 -top-6 h-20 w-20 rounded-full blur-2xl transition ${
+                        isCert
+                          ? "bg-amber-300/10 group-hover:bg-amber-300/20"
+                          : "bg-teal-400/10 group-hover:bg-teal-400/20"
+                      }`}
+                    />
+
+                    {/* certified pill — only on cert boxes */}
+                    {isCert && (
+                      <span className="absolute top-3 right-3 mono text-[9px] uppercase tracking-widest text-amber-300/70 border border-amber-300/25 rounded-full px-1.5 py-0.5">
+                        certified
+                      </span>
+                    )}
+
+                    <Icon
+                      className={`h-5 w-5 mb-3 ${isCert ? "text-amber-300" : "text-teal-300"}`}
+                      aria-hidden
+                    />
+                    <div className="font-display text-2xl text-white font-semibold leading-tight">
+                      {s.value}
+                    </div>
                     <div className="mono text-[11px] uppercase tracking-wider text-white/50 mt-1">
                       {s.label}
                     </div>
@@ -45,37 +70,53 @@ export default function About() {
             </div>
           </div>
 
-          {/* Terminal card */}
-          <div className="lg:col-span-5">
-            <div className="rounded-2xl border border-white/10 bg-[#0e0e14] overflow-hidden">
-              {/* Title bar */}
-              <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-[#0a0a0f]">
-                <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
-                <span className="h-2.5 w-2.5 rounded-full bg-amber-300/80" />
-                <span className="h-2.5 w-2.5 rounded-full bg-teal-300/80" />
-                <span className="mono text-[11px] text-white/40 ml-2">~/swami — zsh</span>
+          {/* Right — Profile Picture */}
+          <div className="lg:col-span-5 flex items-center justify-center">
+            <div className="relative group w-full max-w-[360px]">
+              {/* Glow ring behind image */}
+              <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-teal-400 via-teal-300/50 to-amber-300 opacity-30 blur-lg group-hover:opacity-50 transition-opacity duration-500" />
+
+              {/* Border frame */}
+              <div className="relative rounded-2xl border border-white/10 bg-[#0e0e14] p-1.5 overflow-hidden">
+                <img
+                  src="/swami.jpg"
+                  alt="Swami Badgujar — Full Stack Web Developer"
+                  className="w-full h-[420px] rounded-xl object-cover object-top block"
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                    e.currentTarget.nextElementSibling.style.display = "flex";
+                  }}
+                />
+                {/* Fallback initials avatar */}
+                <div
+                  className="w-full h-[420px] rounded-xl bg-gradient-to-br from-teal-400/20 to-amber-300/20 items-center justify-center flex-col gap-3"
+                  style={{ display: "none" }}
+                >
+                  <span className="flex h-24 w-24 items-center justify-center rounded-2xl bg-gradient-to-br from-teal-400 to-amber-300 text-[#07070b] font-bold text-4xl">
+                    {profile.initials}
+                  </span>
+                  <span className="mono text-xs text-white/30">add swami.jpg to /public</span>
+                </div>
+
+                {/* Overlay badge — bottom */}
+                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between px-4 py-2.5 rounded-xl border border-white/10 bg-[#07070b]/80 backdrop-blur-md">
+                  <div>
+                    <div className="text-white font-semibold text-sm">{profile.name}</div>
+                    <div className="mono text-[11px] text-teal-300/80 mt-0.5">
+                      Full Stack Web Developer
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1.5 mono text-[11px] text-amber-200/80">
+                    <span className="h-1.5 w-1.5 rounded-full bg-teal-300 animate-pulse" />
+                    available
+                  </div>
+                </div>
               </div>
-              <pre className="mono text-[13px] leading-relaxed p-5 text-white/80 whitespace-pre-wrap">
-{`$ whoami
-> swami.badgujar
 
-$ cat role.yaml
-role: Aspiring DevOps Engineer
-builds: ["MERN apps", "REST APIs"]
-learning: ["Docker", "K8s", "GitHub Actions"]
-certified: "AZ-900 (Microsoft Azure)"
-
-$ ./deploy.sh
-`}
-                <span className="text-teal-300">[ok]</span>{" "}
-                <span className="text-white/70">build packaged</span>{"\n"}
-                <span className="text-teal-300">[ok]</span>{" "}
-                <span className="text-white/70">tests passed (cross-browser)</span>{"\n"}
-                <span className="text-teal-300">[ok]</span>{" "}
-                <span className="text-white/70">shipped to production</span>{"\n"}
-                <span className="text-amber-300">$ </span>
-                <span className="animate-pulse">_</span>
-              </pre>
+              {/* Floating tag — top right */}
+              <div className="absolute -top-4 -right-4 hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full border border-teal-300/25 bg-[#0e0e14]/90 backdrop-blur-md mono text-[11px] text-teal-200/80 float-slow">
+                MERN · DevOps
+              </div>
             </div>
           </div>
         </div>
